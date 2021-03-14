@@ -1,0 +1,74 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+
+---
+
+#EasyBuild Demo
+
+.author[Stig Rune Jensen]
+
+.date[
+16 March 2021  
+]
+
+.footnote[Slides available on [GitHub](https://github.com/stigrj/easybuild-demo)]
+
+---
+
+template: inverse
+# Software Modules
+
+---
+
+layout: false
+.left-column[
+## Software Modules
+### HPC software
+]
+.right-column[
+#### Software on your laptop
+- Single user
+- Typically keep only latest version
+- Versions follow the OS upgrades
+
+#### Software on a shared HPC resource
+- **Many users**: Many different software needs
+- **Portability**: Want the environment to be as 
+- **Reproducibility**: Want to keep old versions when new ones arrive
+]
+
+---
+
+layout: false
+.left-column[
+## Software Modules
+### HPC software
+### Environment isolation
+]
+.right-column[
+#### Need for an isolated environment
+- (Scientific) software should not be installed in the global PATH
+- Need a means of bringing software in and out of your enviroment
+- Many different solutions to this:
+    - Lmod + EasyBuild
+    - Virtualenv + pip
+    - Conda
+    - Spack
+]
+
+---
+
+template: inverse
+# Demo
+
+---
+
+
+name: last-page
+template: inverse
+
+Slideshow created using [remark] and served using [cicero]
+
+[remark]: https://github.com/gnab/remark
+[cicero]: https://github.com/bast/cicero
