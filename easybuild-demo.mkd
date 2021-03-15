@@ -36,7 +36,7 @@ layout: false
 #### Software on a shared HPC resource
 - Many users, many different software needs
 - We want the environment to be as similar as possible across machines
-- **Reproducibility**: Want to keep old versions when new ones arrive
+- We want to keep old versions when new ones arrive for **reproducibility**
 - This means we need to support:
     - Different versions of the same software
     - Same software compiled with different compilers
@@ -59,8 +59,8 @@ layout: false
     - Conda
     - Containers
     - Spack
-- *We* use Lmod + EasyBuild for the scientific software stack on all our machines (Fram, Saga and Betzy)
-- *Users* can use *any* of the above to manage their *own* software stack on our machines
+- **We** use Lmod + EasyBuild for the scientific software stack on all our machines (Fram, Saga and Betzy)
+- **Users** can use **any** of the above to manage their **own** software stack on our machines
 ]
 
 ---
@@ -156,8 +156,8 @@ layout: false
 - Performance: (usually) build from source for particular hardware
 - Very pedantic with versioning and dependencies (blessing and curse)
 
-EasyBuild is tightly connected to the module system, automatically generates
-module files after installation
+**EasyBuild is tightly connected to the module system and automatically generates
+module files after installation**
 ]
 
 ---
@@ -178,11 +178,14 @@ layout: false
 - Load EasyBuild module:
     - `module avail easybuild`
     - `module load EasyBuild/4.3.3`
+
 - Show current configuration:
     - `eb --show-config`
+
 - Search for EB files:
     - `eb --search <software>`
     - `eb --show-ec <software>`
+
 - Install software:
     - `eb <software> --fetch`
     - `eb <software> --dry-run`
@@ -204,12 +207,16 @@ layout: false
 .right-column[
 
 #### Recommendations
-- Beware of disk quota in $HOME!
+- Beware of disk quota in `$HOME`!
+
 - Sometimes require manual download of source
-- Software not awailable? Try the central EB repo, it might have been
-  included there recently but didn't make it into our current release of EB
+
+- Software not available? Try the central EB repo, it might have been
+  included there recently but haven't made it into our current EB release
+
 - Same software, different toolchain:
     - `eb <software> --try-toolchain=<toolchain>,<version>`
+
 - Same software, different version:
     - Copy and modify existing easyconfig
     - Beware of cascading dependencies!
