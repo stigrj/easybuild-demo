@@ -4,7 +4,8 @@ class: center, middle, inverse
 
 ---
 
-#EasyBuild Demo
+#Software installation demo
+##Modules + EasyBuild
 
 .author[Stig Rune Jensen]
 
@@ -28,14 +29,17 @@ layout: false
 ]
 .right-column[
 #### Software on your laptop
-- Single user
+- Single user, you are king
 - Typically keep only latest version
 - Versions follow the OS upgrades
 
 #### Software on a shared HPC resource
-- **Many users**: Many different software needs
-- **Portability**: Want the environment to be as 
+- Many users, many different software needs
+- We want the environment to be as similar as possible across machines
 - **Reproducibility**: Want to keep old versions when new ones arrive
+- This means we need to support:
+    - Different versions of the same software
+    - Same software compiled with different compilers
 ]
 
 ---
@@ -49,18 +53,116 @@ layout: false
 .right-column[
 #### Need for an isolated environment
 - (Scientific) software should not be installed in the global PATH
-- Need a means of bringing software in and out of your enviroment
+- Need some way of bringing software in and out of your environment
 - Many different solutions to this:
-    - Lmod + EasyBuild
+    - Lmod (modules) + EasyBuild (installation)
     - Virtualenv + pip
     - Conda
+    - Containers
     - Spack
+- *We* use Lmod + EasyBuild for the scientific software stack on all our machines (Fram, Saga and Betzy)
+- *Users* can use *any* of the above to manage their *own* software stack on our machines
+]
+
+---
+
+layout: false
+.left-column[
+## Software Modules
+### HPC software
+### Environment isolation
+### Demo
+]
+.right-column[
+#### Useful commands
+- List currently loaded modules:
+    - `module list`
+- Search for available modules:
+    - `module avail <software>`
+- Load and unload module:
+    - `module load <software>`
+    - `module unload <software>`
+    - `module purge` (unloads everything)
+- Add and remove path to module files:
+    - `module use </path/to/modules/>`
+    - `module unuse </path/to/modules/>`
+- Save and restore current module environment:
+    - `module save <name-of-env>`
+    - `module restore <name-of-env>`
+    - `module savelist` (list all saves envs)
+- Shorthand alias for the `module` command:
+    - `ml` alias for `module list`
+    - `ml <software>` alias for `module load <software>`
+    - `ml <option>` alias for `module <option>`
+]
+
+---
+
+layout: false
+.left-column[
+## Software Modules
+### HPC software
+### Environment isolation
+### Demo
+]
+.right-column[
+#### Recommendations
+- Keep your environment tidy, purge frequently and load from scratch
+- Don't mix toolchains and compiler versions
+- Don't load modules in your `.bashrc` etc.
+- Make use of module save/restore for interactive work
+- Be explicit in job scripts: purge first, then load all necessary modules
 ]
 
 ---
 
 template: inverse
-# Demo
+# EasyBuild
+
+---
+
+layout: false
+.left-column[
+## EasyBuild
+### Intro
+]
+.right-column[
+#### Different ways of installing software
+- Package managers in Linux: yum, apt, rpm, etc.
+- Conda and pip for Python
+- Packed binaries
+- Containers
+- Compiling from source: configure-make, cmake, etc.
+
+**EasyBuild can be used as wrapper around all the above**
+
+#### EasyBuilds focus
+- Targeting HPC systems
+- Automation: less prone for human errors
+- Reproducibility: rebuild software stack, (usually) portable to other systems
+- Performance: (usually) build from source for particular hardware
+- Very pedantic with versioning and dependencies (blessing and curse)
+
+EasyBuild is tightly connected to the module system, automatically generates
+module files after installation
+]
+
+---
+
+layout: false
+.left-column[
+## EasyBuild
+### Links
+]
+.right-column[
+#### Useful Links
+- Sigma2 documentation: https://documentation.sigma2.no/software/userinstallsw.html
+
+- EasyBuild website: https://easybuild.io/
+- EasyBuild documentation: https://docs.easybuild.io/
+- Official tutorial: https://easybuilders.github.io/easybuild-tutorial/
+- GitHub repo: https://github.com/easybuilders/
+]
 
 ---
 
