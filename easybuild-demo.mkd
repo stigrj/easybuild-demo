@@ -36,7 +36,6 @@ layout: false
 #### Software on a shared HPC resource
 - Many users, many different software needs
 - We want to keep old versions when new ones arrive for **reproducibility**
-- We want the environment to be as similar as possible across machines
 - This means we need to support:
     - Different versions of the same software
     - Same software compiled with different compilers
@@ -72,24 +71,61 @@ layout: false
 ### Demo
 ]
 .right-column[
+#### Inspect existing module
+```
+$ ssh user@fram.sigma2.no
+$ module list
+$ module avail
+$ module show Arm-PerfReports/20.0.3
+$ ls /cluster/software/Arm-PerfReports/20.0.3/bin
+$ which perf-report
+$ module load Arm-PerfReports/20.0.3
+$ which perf-report
+$ perf-report --version
+```
+
+#### Make your own module
+```
+$ mkdir lmod-demo
+$ cd lmod-demo
+$ echo "setenv('FOO', 'foo')" >> SetFoo.lua
+$ module use $PWD
+$ echo $FOO
+$ module load SetFoo
+$ echo $FOO
+$ module unload SetFoo
+$ echo $FOO
+```
+]
+
+---
+
+layout: false
+.left-column[
+## Modules
+### Intro
+### Demo
+]
+.right-column[
+
 #### Useful commands
-- List currently loaded modules:
-    - `module list`
-- Search for available modules:
-    - `module avail <software>`
-- Inspect module file:
-    - `module show <software>`
-- Load and unload module:
-    - `module load <software>`
-    - `module unload <software>`
-    - `module purge` (unloads everything)
-- Add and remove path to module files:
-    - `module use </path/to/modules/>`
-    - `module unuse </path/to/modules/>`
-- Save and restore current module environment:
-    - `module save <name-of-env>`
-    - `module restore <name-of-env>`
-    - `module savelist` (list all saves envs)
+
+```
+$ module list                      # List currently loaded modules
+$ module avail <name-of-module>    # Search for available modules
+$ module show <name-of-module>     # Inspect module file
+
+$ module load <name-of-module>     # Load module
+$ module unload <name-of-module>   # Unload module
+$ module purge                     # Unload all everything
+
+$ module use </path/to/modules>    # Add path to module files
+$ module unuse </path/to/modules>  # Remove path to module files
+
+$ module save <name-of-env>        # Save current module environment
+$ module restore <name-of-env>     # Resore saved module environment
+$ module savelist                  # List saved module environments
+```
 ]
 
 ---
@@ -126,13 +162,24 @@ layout: false
 ]
 .right-column[
 #### Different ways of installing software
+
 - Package managers in Linux: yum, apt, rpm, etc.
 - Conda and pip for Python
 - Packed binaries
 - Containers
 - Compiling from source: configure-make, cmake, etc.
 
-**EasyBuild can be used as wrapper around all the above**
+EasyBuild can be used as wrapper around all the above
+
+#### EasyBuilds focus
+- Targeting HPC systems
+- Automation: less prone for human errors
+- Reproducibility: rebuild software stack, (usually) portable to other systems
+- Performance: (usually) build from source for particular hardware
+- Very pedantic with versioning and dependencies (blessing and curse)
+
+EasyBuild is tightly connected to the module system and automatically generates
+module files after installation
 ]
 
 ---
@@ -144,18 +191,67 @@ layout: false
 ### Demo
 ## EasyBuild
 ### Intro
+### Demo
 ]
 .right-column[
+#### Inspect EasyBuild repo
+```
+$ ssh user@fram.sigma2.no
+$ module load EasyBuild/4.3.3
+$ eb --search mrchem 
+$ eb --show-ec MRChem-1.0.0-foss-2020a-Python-3.8.2.eb
+```
 
-#### EasyBuilds focus
-- Targeting HPC systems
-- Automation: less prone for human errors
-- Reproducibility: rebuild software stack, (usually) portable to other systems
-- Performance: (usually) build from source for particular hardware
-- Very pedantic with versioning and dependencies (blessing and curse)
+#### Install software in home
+```
+$ eb --show-config
+$ eb --fetch MRChem-1.0.0-foss-2020a-Python-3.8.2.eb
+$ ls .local/easybuild
+$ eb --dry-run MRChem-1.0.0-foss-2020a-Python-3.8.2.eb
+$ eb MRChem-1.0.0-foss-2020a-Python-3.8.2.eb            # (will fail)
+```
 
-**EasyBuild is tightly connected to the module system and automatically generates
-module files after installation**
+#### Install software in project
+```
+$ export EASYBUILD_PREFIX="/cluster/projects/nn9989k/easybuild"
+$ eb --show-config
+$ eb --robot --parallel=1 MRChem-1.0.0-foss-2020a-Python-3.8.2.eb
+$ ls /cluster/projects/nn9989k/easybuild
+```
+]
+
+---
+
+layout: false
+.left-column[
+## Modules
+### Intro
+### Demo
+## EasyBuild
+### Intro
+### Demo
+]
+.right-column[
+#### Inspecting the new module
+```
+$ ls /cluster/projects/nn9989k/easybuild
+$ module use /cluster/projects/nn9989k/easybuild/modules/all
+$ module avail
+$ module show MRChem/1.0.0-foss-2020a-Python-3.8.2.eb
+$ module load MRChem/1.0.0-foss-2020a-Python-3.8.2.eb
+$ module list
+$ which mrchem
+$ mrchem --version
+```
+
+#### Using the new module
+```
+$ cd /cluster/projects/nn9989k/eb-demo
+$ cat water.inp
+$ cat water.run
+$ sbatch water.run
+$ cat water.out
+```
 ]
 
 ---
@@ -173,22 +269,21 @@ layout: false
 
 #### Useful commands
 
-- Load EasyBuild module:
-    - `module avail easybuild`
-    - `module load EasyBuild/4.3.3`
-
-- Show current configuration:
-    - `eb --show-config`
-
-- Search for EB files:
-    - `eb --search <software>`
-    - `eb --show-ec <software>`
-
-- Install software:
-    - `eb <software> --fetch`
-    - `eb <software> --dry-run`
-    - `eb <software> --robot --parallel=2`
-    - `eb <software> --robot --parallel=2 --prefix=</path/to/location>`
+```
+$ module avail easybuild            # List available EB versions
+$ module load EasyBuild/4.3.3       # Load the EB module
+                                       
+$ eb --show-config                  # Show the current configuration
+$ eb --search <software>            # Search for easyconfigs
+$ eb --show-ec <easyconfig>         # Print content of easyconfig
+                                       
+$ eb <easyconfig>                   # Install software 
+$ eb --robot <easyconfig>           # Install incl. dependencies
+$ eb --fetch <easyconfig>           # Only download sources
+$ eb --dry-run <easyconfig>         # Perform "test" installation
+$ eb --prefix=<path> <easyconfig>   # Install into given path
+$ eb --parallel=N <easyconfig>      # Install using N processors
+```
 ]
 
 ---
@@ -213,7 +308,9 @@ layout: false
   included there recently but haven't made it into our current EB release
 
 - Same software, different toolchain:
-    - `eb <software> --try-toolchain=<toolchain>,<version>`
+```
+$ eb --try-toolchain=<toolchain>,<version> <name-of-config>
+```
 
 - Same software, different version:
     - Copy and modify existing easyconfig
