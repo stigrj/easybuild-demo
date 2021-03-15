@@ -135,6 +135,16 @@ layout: false
 - Compiling from source: configure-make, cmake, etc.
 
 **EasyBuild can be used as wrapper around all the above**
+]
+
+---
+
+layout: false
+.left-column[
+## EasyBuild
+### Intro
+]
+.right-column[
 
 #### EasyBuilds focus
 - Targeting HPC systems
@@ -152,15 +162,74 @@ module files after installation
 layout: false
 .left-column[
 ## EasyBuild
-### Links
+### Intro
+### Demo
 ]
 .right-column[
-#### Useful Links
-- Sigma2 documentation: https://documentation.sigma2.no/software/userinstallsw.html
 
-- EasyBuild website: https://easybuild.io/
-- EasyBuild documentation: https://docs.easybuild.io/
-- Official tutorial: https://easybuilders.github.io/easybuild-tutorial/
+#### Useful commands
+
+- Load EasyBuild module:
+    - `module avail easybuild`
+    - `module load EasyBuild/4.3.3`
+- Show current configuration:
+    - `eb --show-config`
+- Search for EB files:
+    - `eb --search <software>`
+    - `eb --show-ec <software>`
+- Install software:
+    - `eb <software> --fetch`
+    - `eb <software> --dry-run`
+    - `eb <software> --robot --parallel=2`
+    - `eb <software> --robot --parallel=2 --prefix=</path/to/location>`
+]
+
+---
+
+layout: false
+.left-column[
+## EasyBuild
+### Intro
+### Demo
+]
+.right-column[
+
+#### Recommendations
+- Beware of disk quota in $HOME!
+- Sometimes require manual download of source
+- Software not awailable? Try the central EB repo, it might have been
+  included there recently but didn't make it into our current release of EB
+- Same software, different toolchain:
+    - `eb <software> --try-toolchain=<toolchain>,<version>`
+- Same software, different version:
+    - Copy and modify existing easyconfig
+    - Beware of cascading dependencies!
+]
+
+---
+
+layout: false
+.left-column[
+## EasyBuild
+### Intro
+### Demo
+### Useful Links
+]
+.right-column[
+
+#### Sigma2 documentation
+- Modules: https://documentation.sigma2.no/software/modulescheme.html
+- Installation: https://documentation.sigma2.no/software/userinstallsw.html
+
+#### Lmod
+- Home: https://www.tacc.utexas.edu/research-development/tacc-projects/lmod
+- Documentation: https://lmod.readthedocs.io/en/latest/
+- GitHub repo: https://github.com/TACC/Lmod
+
+#### EasyBuild
+- Home: https://easybuild.io/
+- Documentation: https://docs.easybuild.io/
+- Tutorial: https://easybuilders.github.io/easybuild-tutorial/
 - GitHub repo: https://github.com/easybuilders/
 ]
 
