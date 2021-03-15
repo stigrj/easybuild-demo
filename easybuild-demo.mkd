@@ -25,7 +25,7 @@ template: inverse
 layout: false
 .left-column[
 ## Software Modules
-### HPC software
+### Intro
 ]
 .right-column[
 #### Software on your laptop
@@ -47,8 +47,7 @@ layout: false
 layout: false
 .left-column[
 ## Software Modules
-### HPC software
-### Environment isolation
+### Intro
 ]
 .right-column[
 #### Need for an isolated environment
@@ -69,8 +68,7 @@ layout: false
 layout: false
 .left-column[
 ## Software Modules
-### HPC software
-### Environment isolation
+### Intro
 ### Demo
 ]
 .right-column[
@@ -101,8 +99,7 @@ layout: false
 layout: false
 .left-column[
 ## Software Modules
-### HPC software
-### Environment isolation
+### Intro
 ### Demo
 ]
 .right-column[
@@ -123,6 +120,9 @@ template: inverse
 
 layout: false
 .left-column[
+## Software Modules
+### Intro
+### Demo
 ## EasyBuild
 ### Intro
 ]
@@ -141,6 +141,9 @@ layout: false
 
 layout: false
 .left-column[
+## Software Modules
+### Intro
+### Demo
 ## EasyBuild
 ### Intro
 ]
@@ -161,6 +164,9 @@ module files after installation
 
 layout: false
 .left-column[
+## Software Modules
+### Intro
+### Demo
 ## EasyBuild
 ### Intro
 ### Demo
@@ -188,6 +194,9 @@ layout: false
 
 layout: false
 .left-column[
+## Software Modules
+### Intro
+### Demo
 ## EasyBuild
 ### Intro
 ### Demo
@@ -210,10 +219,13 @@ layout: false
 
 layout: false
 .left-column[
+## Software Modules
+### Intro
+### Demo
 ## EasyBuild
 ### Intro
 ### Demo
-### Useful Links
+## Links
 ]
 .right-column[
 
