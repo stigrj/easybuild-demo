@@ -24,7 +24,7 @@ template: inverse
 
 layout: false
 .left-column[
-## Software Modules
+## Modules
 ### Intro
 ]
 .right-column[
@@ -35,8 +35,8 @@ layout: false
 
 #### Software on a shared HPC resource
 - Many users, many different software needs
-- We want the environment to be as similar as possible across machines
 - We want to keep old versions when new ones arrive for **reproducibility**
+- We want the environment to be as similar as possible across machines
 - This means we need to support:
     - Different versions of the same software
     - Same software compiled with different compilers
@@ -46,7 +46,7 @@ layout: false
 
 layout: false
 .left-column[
-## Software Modules
+## Modules
 ### Intro
 ]
 .right-column[
@@ -67,7 +67,7 @@ layout: false
 
 layout: false
 .left-column[
-## Software Modules
+## Modules
 ### Intro
 ### Demo
 ]
@@ -77,6 +77,8 @@ layout: false
     - `module list`
 - Search for available modules:
     - `module avail <software>`
+- Inspect module file:
+    - `module show <software>`
 - Load and unload module:
     - `module load <software>`
     - `module unload <software>`
@@ -88,17 +90,13 @@ layout: false
     - `module save <name-of-env>`
     - `module restore <name-of-env>`
     - `module savelist` (list all saves envs)
-- Shorthand alias for the `module` command:
-    - `ml` alias for `module list`
-    - `ml <software>` alias for `module load <software>`
-    - `ml <option>` alias for `module <option>`
 ]
 
 ---
 
 layout: false
 .left-column[
-## Software Modules
+## Modules
 ### Intro
 ### Demo
 ]
@@ -120,7 +118,7 @@ template: inverse
 
 layout: false
 .left-column[
-## Software Modules
+## Modules
 ### Intro
 ### Demo
 ## EasyBuild
@@ -141,7 +139,7 @@ layout: false
 
 layout: false
 .left-column[
-## Software Modules
+## Modules
 ### Intro
 ### Demo
 ## EasyBuild
@@ -164,7 +162,7 @@ module files after installation**
 
 layout: false
 .left-column[
-## Software Modules
+## Modules
 ### Intro
 ### Demo
 ## EasyBuild
@@ -197,7 +195,7 @@ layout: false
 
 layout: false
 .left-column[
-## Software Modules
+## Modules
 ### Intro
 ### Demo
 ## EasyBuild
@@ -226,7 +224,7 @@ layout: false
 
 layout: false
 .left-column[
-## Software Modules
+## Modules
 ### Intro
 ### Demo
 ## EasyBuild
